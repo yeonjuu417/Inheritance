@@ -7,16 +7,19 @@ var Queue = function() {
 };
 
 Queue.prototype.add = function(value) {
-  this.rear ++; //뒤에 값추가
+   //뒤에 값추가
   this._storage[this.rear] = value;
+  this.rear ++;
 };
 
-Queue.prototype.remove = function(value) {
-  if(this.rear === this.front){
+Queue.prototype.remove = function() {
+  if(this.rear - this.front === 0){
     return undefined;
   }
+  let del = this._storage[this.front];
+  delete this._storage[this.front];
   this.front++;
-  return this._storage[this.front];// 앞쪽에서 값 나가기 
+  return del;// 앞쪽에서 값 나가기 
 };
 
 module.exports = Queue;
